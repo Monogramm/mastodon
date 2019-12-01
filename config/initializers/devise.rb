@@ -63,7 +63,6 @@ module Devise
   @@ldap_tls_no_verify = false
   mattr_accessor :ldap_search_filter
   @@ldap_search_filter = nil
-  # tootsuite/mastodon#12021: Convert LDAP username to valid format
   mattr_accessor :ldap_uid_conversion_enabled
   @@ldap_uid_conversion_enabled = false
   mattr_accessor :ldap_uid_conversion_search
@@ -375,7 +374,6 @@ Devise.setup do |config|
     config.ldap_mail           = ENV.fetch('LDAP_MAIL', 'mail')
     config.ldap_tls_no_verify  = ENV['LDAP_TLS_NO_VERIFY'] == 'true'
     config.ldap_search_filter  = ENV.fetch('LDAP_SEARCH_FILTER', '(|(%{uid}=%{email})(%{mail}=%{email}))')
-    # tootsuite/mastodon#12021: Convert LDAP username to valid format
     config.ldap_uid_conversion_enabled  = ENV['LDAP_UID_CONVERSION_ENABLED'] == 'true'
     config.ldap_uid_conversion_search   = ENV.fetch('LDAP_UID_CONVERSION_SEARCH', '.,- ')
     config.ldap_uid_conversion_replace  = ENV.fetch('LDAP_UID_CONVERSION_REPLACE', '_')
